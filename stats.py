@@ -24,3 +24,6 @@ print(f'The complete list: {numbers}')
 print(f'The maximum number is: {max_stats}')
 print(f'The minimum number is: {min_stats}')
 print(f'The average is {ave_stats}')
+
+
+# este es un ejemplo de tupla dentro de python
