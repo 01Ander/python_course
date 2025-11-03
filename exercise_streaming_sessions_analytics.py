@@ -135,3 +135,27 @@ print(f'Device more use day 2: {top_device}')
 
 
 # ----------------- item 5
+
+count_sessions_day1 = len(sessions_day1)
+
+count = 0
+for data_session in sessions_day2:
+    count += 1
+count_sessions_day2 = count
+
+
+unique_users_day1 = set(users_day1)
+unique_users_day2 = set(users_day2)
+unique_users_total = len(unique_users_day1 | unique_users_day2)
+
+unique_titles_day1 = set(titles_day1)
+unique_titles_day2 = set(titles_day2)
+unique_titles_total = len(unique_titles_day1 | unique_titles_day2)
+
+summary = (
+    ('day1_sessions', count_sessions_day1),
+    ('day2_sessions', count_sessions_day2),
+    ('unique_users_total', unique_users_total),
+    ('unique_titles_total', unique_titles_total)
+)
+print(summary)
