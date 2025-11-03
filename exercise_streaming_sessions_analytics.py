@@ -71,20 +71,6 @@ print(title_minutes_day2)
 
 
 # --------------item3
-# user_stats_day1 = {}
-
-# for session in sessions_day1:
-#     user_id = session[0]
-#     minutes = session[2]
-#     # user_stats_day1[user_id] = user_stats_day1.get(user_id, 0) + minutes
-#     if user_id not in user_stats_day1:
-#         user_stats_day1[user_id] = {
-#             'total_minutes': minutes, "session_count": 1}
-#     else:
-#         user_stats_day1[user_id]['total_minutes'] += minutes
-#         user_stats_day1[user_id]['session_count'] += 1
-
-# print(user_stats_day1)
 
 
 def get_user_stats(sessions):
@@ -104,7 +90,48 @@ def get_user_stats(sessions):
 users_stats_day1 = get_user_stats(sessions_day1)
 users_stats_day2 = get_user_stats(sessions_day2)
 
-for user in users_stats_day1:
-    top_user = max(users_stats_day1.items(),
-                   key=lambda item: item[1]['total_minutes'])
-print(top_user)
+
+def get_top_user(users_stats):
+    return max(users_stats.items(), key=lambda item: item[1]['total_minutes'])
+# max() ya recorre toda la lista, no hace falta recorrerla con un for
+
+
+top_user_day1 = get_top_user(users_stats_day1)
+top_user_day2 = get_top_user(users_stats_day2)
+print(
+    f"Top user Day 1: {top_user_day1[0]} with {top_user_day1[1]['total_minutes']} minutes")
+print(
+    f"Top user Day 2: {top_user_day2[0]} with {top_user_day2[1]['total_minutes']} minutes")
+
+avg_minutes = {}
+
+for user_id, stats in users_stats_day2.items():
+    avg_minutes[user_id] = {
+        'average': stats['total_minutes'] / stats['session_count']}
+
+print(avg_minutes)
+
+
+# ----------------------item 4
+
+devices_day1 = get_data(sessions_day1, 4)
+devices_day2 = get_data(sessions_day2, 4)
+
+print(devices_day1 | devices_day2)
+
+device_count_day2 = {}
+
+for data in sessions_day2:
+    device = data[4]
+    if device not in device_count_day2:
+        device_count_day2[device] = {'device_count': 1}
+    else:
+        device_count_day2[device]['device_count'] += 1
+
+print(f'[Device count day 2: {device_count_day2}]')
+top_device = max(device_count_day2.items(),
+                 key=lambda item: item[1]['device_count'])
+print(f'Device more use day 2: {top_device}')
+
+
+# ----------------- item 5
