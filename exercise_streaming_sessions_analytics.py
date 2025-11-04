@@ -159,3 +159,20 @@ summary = (
     ('unique_titles_total', unique_titles_total)
 )
 print(summary)
+
+# ------------------- item 6
+
+
+def validate_sessions(sessions):
+    for session in sessions:
+        if len(session) == 5:
+            minutes = session[2]
+            if minutes < 0 or not isinstance(minutes, int):
+                return False
+        else:
+            return False
+    return True
+
+
+validate_day1 = validate_sessions(sessions_day1)
+print(validate_day1)
