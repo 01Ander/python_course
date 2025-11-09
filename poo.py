@@ -90,3 +90,34 @@ account.deposit(200)
 print(account.balance)
 account.withdraw(1000)
 print(account.balance)
+
+
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError('Subclasses must implement speak()')
+
+
+class Dog(Animal):
+    def speak(self):
+        return 'Woof'
+
+
+class Cat(Animal):
+    def speak(self):
+        return 'Moew'
+
+
+class Bird(Animal):
+    def speak(self):
+        return 'Pio'
+
+
+dogy = Dog('Lucas')
+cat = Cat('Motas')
+bird = Bird('Piolin')
+
+for animal in [dogy, cat, bird]:
+    print(f'{animal.name} says {animal.speak()}')
