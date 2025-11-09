@@ -17,22 +17,22 @@ car_2 = Car('Tesla', 'Model Y')
 # car_2.start()
 
 
-class Book:
-    def __init__(self, title, author, year):
-        self.title = title
-        self.author = author
-        self.year = year
+# class Book:
+#     def __init__(self, title, author, year):
+#         self.title = title
+#         self.author = author
+#         self.year = year
 
-    def get_info(self):
-        print(f'"{self.title}", written by {self.author} ({self.year})')
-
-
-book1 = Book('Origen', 'Dan Brown', '2021')
-book2 = Book('Harry Potter', 'J.K. Rolling', '1997')
+#     def get_info(self):
+#         print(f'"{self.title}", written by {self.author} ({self.year})')
 
 
-book1.get_info()
-book2.get_info()
+# book1 = Book('Origen', 'Dan Brown', '2021')
+# book2 = Book('Harry Potter', 'J.K. Rolling', '1997')
+
+
+# book1.get_info()
+# book2.get_info()
 
 
 class Rectangle:
@@ -121,3 +121,66 @@ bird = Bird('Piolin')
 
 for animal in [dogy, cat, bird]:
     print(f'{animal.name} says {animal.speak()}')
+
+
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+
+class EReader:
+    def __init__(self):
+        self.current_book = None
+
+    def load_book(self, book):
+        self.current_book = book
+
+    def read(self):
+        if self.current_book:
+            print(
+                f'Reading {self.current_book.title} by {self.current_book.author}')
+        else:
+            print('No book loaded')
+
+
+book1 = Book('Origen', 'Dan Brown')
+book2 = Book('Harry Potter', 'J.K. Rolling')
+
+kinlde = EReader()
+kinlde.load_book(book1)
+kinlde.read()
+
+
+class BankAccount1:
+    def __init__(self, balance=0):
+        self._balance = balance
+
+    def deposit(self, amount):
+        self._balance += amount
+
+    def withdraw(self, amount):
+        if amount > self._balance:
+            raise ValueError("Insufficient funds")
+        self._balance -= amount
+
+    def get_balance(self):
+        return self._balance
+
+
+class User:
+    def __init__(self, name):
+        self.name = name
+        self.account = BankAccount1()    # composición
+
+    def make_deposit(self, amount):
+        print(f"{self.name} deposits ${amount}")
+        self.account.deposit(amount)
+
+    def get_balance(self):
+        return self.account.get_balance()
+
+
+u = User("Andersson")
+u.make_deposit(200)
+print(u.get_balance())
