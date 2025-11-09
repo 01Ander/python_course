@@ -54,3 +54,39 @@ rectangle = Rectangle(5, 8)
 print(rectangle.area())
 print(rectangle.perimetre())
 print(rectangle)
+
+
+class BankAccount:
+    def __init__(self, balance):
+        self._balance = 0
+        self.balance = balance
+
+    @property
+    def balance(self):
+        return self._balance
+
+    @balance.setter
+    def balance(self, amount):
+        if amount < 0:
+            raise ValueError('Amount must be positive')
+        self._balance = amount
+
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError('Amount must be positive')
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            raise ValueError('Amount must be positive')
+        if amount > self.balance:
+            raise ValueError("Amount must be greater than the balance")
+        self.balance -= amount
+
+
+account = BankAccount(1200)
+print(account.balance)
+account.deposit(200)
+print(account.balance)
+account.withdraw(1000)
+print(account.balance)
